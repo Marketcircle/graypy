@@ -67,9 +67,9 @@ class GELFHandler(DatagramHandler):
         """
         if self.port is None:
             family = socket.AF_UNIX
-            return socket.socket(family, socket.SOCK_DGRAM)
+            return socket.socket(family, socket.IPPROTO_UDP)
         else:
-            addresses = socket.getaddrinfo(self.host, self.port, 0, socket.SOCK_DGRAM)
+            addresses = socket.getaddrinfo(self.host, self.port, 0, socket.IPPROTO_UDP)
             if len(addresses) > 1:
                 raise error("getaddrinfo returns an empty list")
             address = addresses[0]
